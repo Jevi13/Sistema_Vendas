@@ -1,0 +1,12 @@
+package itens;
+
+import mercado.Produtos;
+
+public class Ovo extends Produtos {
+
+	public Ovo(String nome, double preco, String tipoVenda) {
+		super(nome, preco, tipoVenda);
+		// TODO Auto-generated constructor stub
+	}
+
+}

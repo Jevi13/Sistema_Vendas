@@ -1,0 +1,18 @@
+package itens;
+
+import mercado.Produtos;
+
+public class Leite extends Produtos{
+
+	public Leite(double preco) {
+		super(preco);
+		
+	}
+
+	@Override
+	public void exibirDetalhes() {
+		// TODO Auto-generated method stub
+		System.out.println("Produto: " + getNome() + " | Preço: R$" + getPreco() + " | Estoque: " + getEstoque() + " " + getTipoVenda());
+	}
+
+}

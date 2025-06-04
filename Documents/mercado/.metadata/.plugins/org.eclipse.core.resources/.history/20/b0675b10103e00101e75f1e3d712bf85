@@ -1,0 +1,7 @@
+package itens;
+
+import mercado.Produtos;
+
+public class Farinha extends Produtos {
+
+}

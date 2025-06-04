@@ -1,0 +1,28 @@
+package itens;
+
+import mercado.Produtos;
+import mercado.TipoUnidade;
+
+public class Ovo extends Produtos {
+
+	public Ovo(String nome, double preco, TipoUnidade tipoVenda) {
+		super(nome, preco, tipoVenda);
+		// TODO Auto-generated constructor stub
+	}
+	
+	
+	try {
+		System.out.println("Digite o nome do produto:");
+			String nomeProduto = sc.next().toLowerCase();
+			System.out.println("Digite o Preco do produto:");
+			double precoProduto = sc.nextDouble();
+			System.out.println("Digite o tipo de venda:");
+			String tipoVenda = sc.next().toUpperCase();
+			item = new Produtos(nomeProduto, precoProduto, TipoUnidade.valueOf(tipoVenda));
+			produtos.add(item);
+		}catch(IllegalArgumentException erro) {
+			System.out.println("Não Foi possivel cadastrar o produto: Tipo de Venda Inválido!");
+		}finally {
+			break;
+		}
+}

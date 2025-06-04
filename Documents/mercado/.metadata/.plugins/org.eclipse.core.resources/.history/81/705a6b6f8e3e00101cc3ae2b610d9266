@@ -1,0 +1,19 @@
+package itens;
+
+import mercado.Produtos;
+import mercado.TipoUnidade;
+
+public class Leite extends Produtos{
+
+	public Leite(String nome, double preco, TipoUnidade tipoVenda) {
+		super(nome, preco, tipoVenda);
+		
+	}
+
+	@Override
+	public void exibirDetalhes() {
+		// TODO Auto-generated method stub
+		System.out.println("Produto: " + getNome() + " | Preço: R$" + getPreco() + " | Estoque: " + getEstoque() + " " + getTipoVenda());
+	}
+
+}

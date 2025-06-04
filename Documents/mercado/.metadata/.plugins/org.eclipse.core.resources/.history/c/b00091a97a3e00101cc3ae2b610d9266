@@ -1,0 +1,23 @@
+package mercado;
+
+import java.util.Scanner;
+
+public class Menu {
+
+	public static final int mostar() {
+		Scanner teclado = new java.util.Scanner(System.in);
+		System.out.println("/*-----------------------------------------------*/");
+		System.out.println("/*              Menu do simulado                 */");
+		System.out.println("/*-----------------------------------------------*/");
+		System.out.println("/*                                               */");
+		System.out.println("/*  1 - Cadastrar Produtos                       */");
+		System.out.println("/*  2 - Adicionar Estoque                        */");
+		System.out.println("/*  3 - Vender Produtos                          */");
+		System.out.println("/*                                               */");
+		System.out.println("/*-----------------------------------------------*/");
+		System.out.println("/* Escolha uma opcao : ");
+		return teclado.nextInt();
+	}
+	
+	
+}

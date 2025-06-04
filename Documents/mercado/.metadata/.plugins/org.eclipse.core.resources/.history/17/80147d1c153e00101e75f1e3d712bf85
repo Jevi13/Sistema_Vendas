@@ -1,0 +1,63 @@
+package mercado;
+
+public abstract class Produtos {
+	private String nome;
+	private double preco;
+	private int estoque;
+	private String tipoVenda;
+	
+	
+	public Produtos(String nome, double preco, String tipoVenda) {
+		super();
+		this.nome = nome;
+		this.preco = preco;
+		this.tipoVenda = tipoVenda;
+	}
+	
+	public String getNome() {
+		return nome;
+	}
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+	public double getPreco() {
+		return preco;
+	}
+	public void setPreco(double preco) {
+		this.preco = preco;
+	}
+	
+	public int getEstoque() {
+		return estoque;
+	}
+	
+	public void setEstoque(int estoque) {
+		this.estoque = estoque;
+	}
+	public String getTipoVenda() {
+		return tipoVenda;
+	}
+	public void setTipoVenda(String tipoVenda) {
+		this.tipoVenda = tipoVenda;
+	}
+	
+	public void adicionarEstoque(int quantidade) {
+		
+	}
+	
+	public boolean removerEstoque(int quantidade) {
+		
+	}
+	
+	public double getValorTotal(int quantidade) {
+		return quantidade * preco;
+	}
+	
+	private static boolean validarTipoVenda(String tipo) {
+		
+	}
+	
+	public abstract void exibirDetalhes();
+	
+	
+}

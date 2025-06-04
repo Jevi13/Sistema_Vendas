@@ -1,0 +1,18 @@
+package itens;
+
+import mercado.Produtos;
+
+public class Ovo extends Produtos {
+
+	public Ovo(String nome, double preco, String tipoVenda) {
+		super(nome, preco, tipoVenda);
+		// TODO Auto-generated constructor stub
+	}
+
+	@Override
+	public void exibirDetalhes() {
+		// TODO Auto-generated method stub
+		System.out.println("Produto: " + getNome() + " | Preço: R$" + getPreco() + " | Estoque: " + getEstoque() + " " + getTipoVenda());
+	}
+
+}

@@ -1,0 +1,82 @@
+package mercado;
+
+public abstract class Produtos {
+	private String nome;
+	private double preco;
+	private int estoque;
+	private String tipoVenda;
+	
+	
+	public Produtos(String nome, double preco, String tipoVenda) {
+		super();
+		this.nome = nome;
+		this.preco = preco;
+		this.tipoVenda = tipoVenda;
+	}
+	
+	
+	
+	public int getEstoque() {
+		return estoque;
+	}
+
+
+
+	public void setEstoque(int estoque) {
+		this.estoque = estoque;
+	}
+
+
+
+	public String getNome() {
+		return nome;
+	}
+
+
+
+	public double getPreco() {
+		return preco;
+	}
+
+
+
+	public String getTipoVenda() {
+		return tipoVenda;
+	}
+
+
+
+	public void adicionarEstoque(int quantidade) {
+        if (quantidade > 0) {
+            this.estoque += quantidade;
+            System.out.println(quantidade + " " + this.tipoVenda + " de " + this.nome + " adicionados ao estoque.");
+        } else {
+            System.out.println("A quantidade a adicionar deve ser positiva.");
+        }
+    }
+	
+	public boolean removerEstoque(int quantidade) {
+        if (quantidade > 0 && this.estoque >= quantidade) {
+            this.estoque -= quantidade;
+            return true;
+        } else if (quantidade <= 0) {
+            System.out.println("A quantidade a remover deve ser positiva.");
+            return false;
+        } else {
+            System.out.println("Estoque insuficiente para vender " + quantidade + " " + this.tipoVenda + " de " + this.nome + ". Estoque atual: " + this.estoque);
+            return false;
+        }
+    }
+	
+	public double getValorTotal(int quantidade) {
+        return this.preco * quantidade;
+    }
+	
+	 private static boolean validarTipoVenda(String tipo) {
+	        return tipo.equals("UN") || tipo.equals("KG") || tipo.equals("L");
+	    }
+	
+	public abstract void exibirDetalhes();
+	
+	
+}

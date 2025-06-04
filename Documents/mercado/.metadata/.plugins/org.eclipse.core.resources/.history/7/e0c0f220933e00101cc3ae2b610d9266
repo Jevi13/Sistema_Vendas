@@ -1,0 +1,95 @@
+package mercado;
+
+public class Produtos {
+	private String nome;
+	private double preco;
+	private int estoque;
+	private TipoUnidade tipoVenda;
+	
+	
+	public Produtos(String nome, double preco, TipoUnidade tipoVenda) {
+		super();
+		this.nome = nome;
+		this.preco = preco;
+		this.tipoVenda = tipoVenda;
+	}
+	
+	
+	
+	public int getEstoque() {
+		return estoque;
+	}
+
+
+
+	public void setEstoque(int estoque) {
+		this.estoque = estoque;
+	}
+
+
+
+	public String getNome() {
+		return nome;
+	}
+
+
+
+	public double getPreco() {
+		return preco;
+	}
+
+
+
+	public TipoUnidade getTipoVenda() {
+		return tipoVenda;
+	}
+
+	
+
+	public void adicionarEstoque(int quantidade) {
+        if (quantidade > 0) {
+            this.estoque += quantidade;
+            System.out.println(quantidade + " " + this.tipoVenda + " de " + this.nome + " adicionados ao estoque.");
+        } else {
+            System.out.println("A quantidade a adicionar deve ser positiva.");
+        }
+    }
+	
+	public boolean removerEstoque(int quantidade) {
+        if (quantidade > 0 && this.estoque >= quantidade) {
+            this.estoque -= quantidade;
+            System.out.println("Venda realizada de " + quantidade + tipoVenda + " " + this.nome);
+            return true;
+        } else if (quantidade <= 0) {
+            System.out.println("Quantidade Inválida!");
+            return false;
+        } else {
+            System.out.println("Estoque insuficiente para vender " + quantidade + " " + this.tipoVenda + " de " + this.nome + ". Estoque atual: " + this.estoque);
+            return false;
+        }
+    }
+	
+	public void getValorTotal(int quantidade) {
+		System.out.println("O total da venda foi: R$ " + this.preco * quantidade);
+        
+    }
+	
+}
+
+/* 1 - Faca um pequeno sistema de vendas de produtos (Leite, Carne, Ovo, Farinha)
+1.1 - Faça um menu para cadastrar os produtos (todos), adicionar Estoque, e vender produtos
+1.2 - Os produtos devem ser vendidos 1 por 1 e não todos de vez
+    exemplo : Vender Ovo. Entra com a venda, calcula o valor da venda e remove
+    do estoque a quantidade vendida
+2 - Em produto, apenas aceitar os seguintes valores em tipovenda
+UN / KG / L
+3 - Antes de iniciar uma venda, você deve criar uma entrada de
+dados de todos os produtos que serão vendidos
+4 - Não pode ser permitido vender produto sem estoque;
+5 - A quantidade de produtos deve ser inserida via
+método adicionarProdutoEstoque(int quantidade);
+6 - O sistema deve sair quando digitar 99 no menu
+7 - Alterar o nome do pacote primeiraAvaliacaoSegundaUnidade para mercado
+8 - Criar um pacote chamado itens e mover as classes :
+Carne, Farinha, Leite, Ovo
+9 - Corrigir as inconsistências comunitárias de nome de classe, nome de método, encapsulamento e herança */

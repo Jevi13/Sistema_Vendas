@@ -1,0 +1,133 @@
+package mercado;
+
+import itens.Carne;
+import itens.Farinha;
+import itens.Leite;
+import itens.Ovo;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
+public class SistemaVendas {
+    private List<Produtos> produtos;
+    private Scanner entrada;
+
+    public SistemaVendas() {
+        produtos = new ArrayList<>();
+        entrada = new Scanner(System.in);
+        inicializarProdutos(); // Chama a inicialização dos produtos
+    }
+
+    private void inicializarProdutos() {
+        // Regra 3: Inicialização dos produtos
+        // Os preços são arbitrários para o exemplo.
+        produtos.add(new Leite(5.50));
+        produtos.add(new Carne(35.00));
+        produtos.add(new Ovo(0.80));
+        produtos.add(new Farinha(8.00));
+        System.out.println("Produtos iniciais cadastrados no sistema.");
+    }
+
+    private void exibirMenu() {
+        System.out.println("\n--- Menu do Sistema de Vendas ---");
+        System.out.println("1. Listar Produtos");
+        System.out.println("2. Adicionar Estoque");
+        System.out.println("3. Vender Produto");
+        System.out.println("99. Sair");
+        System.out.print("Escolha uma opção: ");
+    }
+
+    private void adicionarEstoqueProduto() {
+        System.out.print("Digite o nome do produto para adicionar estoque: ");
+        String nomeProduto = entrada.nextLine();
+        Produto produtoEncontrado = encontrarProduto(nomeProduto);
+
+        if (produtoEncontrado != null) {
+            System.out.print("Digite a quantidade a adicionar: ");
+            int quantidade = entrada.nextInt();
+            entrada.nextLine(); // Consome a nova linha
+
+            produtoEncontrado.adicionarEstoque(quantidade);
+        } else {
+            System.out.println("Produto não encontrado.");
+        }
+    }
+
+    private void venderProduto() {
+        System.out.print("Digite o nome do produto para vender: ");
+        String nomeProduto = entrada.nextLine();
+        Produto produtoEncontrado = encontrarProduto(nomeProduto);
+
+        if (produtoEncontrado != null) {
+            // Regra 1.2: Vender 1 por 1
+            int quantidadeVender = 1;
+            System.out.println("Você está prestes a vender 1 " + produtoEncontrado.getTipoVenda() + " de " + produtoEncontrado.getNome());
+            System.out.print("Confirmar venda? (S/N): ");
+            String confirmacao = entrada.nextLine().toUpperCase();
+
+            if (confirmacao.equals("S")) {
+                if (produtoEncontrado.removerEstoque(quantidadeVender)) {
+                    double valorVenda = produtoEncontrado.getValorTotal(quantidadeVender);
+                    System.out.println("Venda realizada com sucesso!");
+                    System.out.println("Produto: " + produtoEncontrado.getNome() + " | Quantidade: " + quantidadeVender + " " + produtoEncontrado.getTipoVenda() + " | Valor: R$" + String.format("%.2f", valorVenda));
+                }
+                // A mensagem de estoque insuficiente já é tratada dentro de removerEstoque()
+            } else {
+                System.out.println("Venda cancelada.");
+            }
+        } else {
+            System.out.println("Produto não encontrado.");
+        }
+    }
+
+    private Produto encontrarProduto(String nome) {
+        for (Produto p : produtos) {
+            if (p.getNome().equalsIgnoreCase(nome)) {
+                return p;
+            }
+        }
+        return null;
+    }
+
+    private void listarProdutos() {
+        if (produtos.isEmpty()) {
+            System.out.println("Nenhum produto cadastrado.");
+            return;
+        }
+        System.out.println("\n--- Produtos em Estoque ---");
+        for (Produto p : produtos) {
+            p.exibirDetalhes();
+        }
+    }
+
+    public static void main(String[] args) {
+        SistemaVendas sistema = new SistemaVendas();
+        int opcao;
+
+        do {
+            sistema.exibirMenu();
+            opcao = sistema.entrada.nextInt();
+            sistema.entrada.nextLine(); // Consome a nova linha
+
+            switch (opcao) {
+                case 1:
+                    sistema.listarProdutos();
+                    break;
+                case 2:
+                    sistema.adicionarEstoqueProduto();
+                    break;
+                case 3:
+                    sistema.venderProduto();
+                    break;
+                case 99:
+                    System.out.println("Saindo do sistema de vendas. Até mais!");
+                    break;
+                default:
+                    System.out.println("Opção inválida. Tente novamente.");
+            }
+        } while (opcao != 99);
+
+        sistema.entrada.close();
+    }
+}

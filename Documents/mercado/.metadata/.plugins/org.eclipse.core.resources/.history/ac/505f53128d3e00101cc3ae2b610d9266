@@ -1,0 +1,80 @@
+package mercado;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
+public class SistemaVendas{
+	
+
+   public static void main(String[] args) {
+        
+	   int menu = 0;
+    	Scanner sc = new Scanner(System.in);
+    	List<Produtos> produtos = new ArrayList<>();
+    	Produtos item;
+  
+    	do {
+    		System.out.println("/*-----------------------------------------------*/");
+    		System.out.println("/*              Menu do simulado                 */");
+    		System.out.println("/*-----------------------------------------------*/");
+    		System.out.println("/*                                               */");
+    		System.out.println("/*  1 - Cadastrar Produtos                       */");
+    		System.out.println("/*  2 - Adicionar Estoque                        */");
+    		System.out.println("/*  3 - Vender Produtos                          */");
+    		System.out.println("/* 99 - Sair                                     */");
+    		System.out.println("/*-----------------------------------------------*/");
+    		System.out.println("/* Escolha uma opcao : ");
+    		menu = sc.nextInt();
+    		
+			switch (menu) {
+			case 1 :
+				try {
+				System.out.println("Digite o nome do produto:");
+					String nomeProduto = sc.next().toLowerCase();
+					System.out.println("Digite o Preco do produto:");
+					double precoProduto = sc.nextDouble();
+					System.out.println("Digite o tipo de venda:");
+					String tipoVenda = sc.next().toUpperCase();
+					item = new Produtos(nomeProduto, precoProduto, TipoUnidade.valueOf(tipoVenda));
+					produtos.add(item);
+				}catch(Error erro) {
+					
+				}
+				finally {
+					break;	
+				}
+			case 2 : System.out.println("Digite o nome do produto que deseja inserir estoque:");
+					String prodEstoque = sc.next().toLowerCase();
+					System.out.println("Digite a quantidade do estoque:");
+					int estoque = sc.nextInt();
+					for (Produtos p : produtos) {
+						if (p.getNome().equals(prodEstoque)) {
+							p.adicionarEstoque(estoque);
+						}
+					}
+					break;
+					
+			case 3 :   System.out.println("Digite o nome do produto que deseja vender:");
+			String prodVenda = sc.next().toLowerCase();
+			System.out.println("Digite a quantidade da venda:");
+			int qtdVenda = sc.nextInt();
+			for (Produtos p : produtos) {
+				if (p.getNome().equals(prodVenda)) {
+					boolean resultado = p.removerEstoque(qtdVenda); 
+					if(resultado) {
+						p.getValorTotal(qtdVenda);
+					}
+				}
+			}
+			break;
+			
+			case 99: System.out.println();break;
+				
+			}
+			
+    	} while (menu != 99);
+			
+    
+}
+}
